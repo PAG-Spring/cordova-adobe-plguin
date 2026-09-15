@@ -202,9 +202,21 @@ public class AdobeMobilePlugin extends CordovaPlugin {
 
             Map<String, Object> paragonFinanceData = new HashMap<>();
 
+            // Extract customer activity fields into a single nested map
+            Map<String, Object> customerActivityData = new HashMap<>();
+
             if (eventData.has("accountID")) {
-                Map<String, Object> customerActivityData = new HashMap<>();
                 customerActivityData.put("accountID", eventData.getString("accountID"));
+            }
+            if (eventData.has("productType")) {
+                customerActivityData.put("productType", eventData.getString("productType"));
+            }
+            if (eventData.has("productName")) {
+                customerActivityData.put("productName", eventData.getString("productName"));
+            }
+
+            // Only attach customerActivity if at least one property exists
+            if (!customerActivityData.isEmpty()) {
                 paragonFinanceData.put("customerActivity", customerActivityData);
             }
 
