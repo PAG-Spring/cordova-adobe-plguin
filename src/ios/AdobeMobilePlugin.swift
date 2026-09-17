@@ -220,9 +220,23 @@ class AdobeMobilePlugin: CDVPlugin {
 
                 var paragonFinanceData: [String: Any] = [:]
 
+                // 1. Instantiate customerActivityData once
+                var customerActivityData: [String: Any] = [:]
+
                 if let accountID = financeData["accountID"] as? String {
-                    var customerActivityData: [String: Any] = [:]
                     customerActivityData["accountID"] = accountID
+                }
+
+                if let productType = financeData["productType"] as? String {
+                    customerActivityData["productType"] = productType
+                }
+                
+                if let productName = financeData["productName"] as? String {
+                    customerActivityData["productName"] = productName
+                }
+
+                // 2. Attach customerActivity only if at least one attribute is present
+                if !customerActivityData.isEmpty {
                     paragonFinanceData["customerActivity"] = customerActivityData
                 }
 

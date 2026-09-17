@@ -111,7 +111,7 @@ exports.resetIdentities = function (success, error) {
  *   function(err) { console.error('Error sending event:', err); },
  *   'eventNameExample', 
  *   'eventTypeExample', 
- *   { accountID: '123456', personId: '654321' }
+ *   { accountID: '123456', personId: '654321', productType: 'Easy Access', productName: 'Easy Saver' }
  * );
  */
 exports.sendEvent = function (success, error, eventName, eventType, eventData) {
